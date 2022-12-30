@@ -244,6 +244,16 @@
   background-size: 0 0.1rem;
 }
 
+.notion-page-no-cover {
+  /* 为啥用 flex-basis: 0; 不行 */
+  height: 0;
+}
+
+.notion-page-scroller {
+  /* 不知到什么地方多余，产生了滚动条 */
+  min-height: calc(99vh - var(--notion-header-height));
+}
+
 .notion-link:focus,
 .notion-link:hover {
   border-bottom-color: transparent;
