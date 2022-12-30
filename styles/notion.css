@@ -8,7 +8,7 @@
  */
 
 .notion {
-  --notion-max-width: 720px;
+  /* --notion-max-width: 720px; */
   --notion-header-height: 54px;
 }
 
@@ -17,8 +17,8 @@
   line-height: 1.65;
 }
 
-.index-page {
-  --notion-max-width: 900px;
+:root {
+  --notion-max-width: 960px;
 }
 
 .notion-text {
@@ -50,8 +50,11 @@
 
 .notion-gallery-grid {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 6vmin;
-  gap: 6vmin;
+  /* 这个 grid-gap 会影响到元素大小? */
+  /* grid-gap: 6vmin; */
+  /* gap: 6vmin; */
+  grid-auto-rows: revert;
+  border: none;
 }
 
 .notion-gallery-grid .notion-page-icon-inline {
@@ -59,7 +62,8 @@
 }
 
 .notion-gallery-grid .notion-page-title-text {
-  font-size: 2em;
+  font-size: 1.2em;
+  font-weight: 600;
   white-space: unset;
 }
 
@@ -72,36 +76,40 @@
   font-size: 14px;
 }
 
-.notion-collection-card {
-  border-radius: 16px;
-  box-shadow: none;
-}
-
-.notion-collection-card-cover img {
-  border-radius: 16px;
-}
-
+/* https://merakiui.com/components/blog */
 .notion-collection-card {
   overflow: visible;
-}
-
-.notion-collection-card-cover {
-  border-radius: 16px;
-  box-shadow: 2px 2px 8px 4px rgba(15, 15, 15, 0.1);
+  display: flex;
+  flex-direction: row;
+  box-shadow: none;
+  border: none;
 }
 
 .notion-collection-card-cover {
   border-bottom: 0 none;
   transition: filter 150ms linear;
   filter: none;
+  flex: 1;
+  width: 0;
+  border-radius: 8px;
+  height: 160px;
 }
 
 .notion-collection-card:hover .notion-collection-card-cover {
-  filter: brightness(120%);
+  filter: brightness(115%);
+}
+
+.notion-collection-card:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  /* todo: tailwind css */
 }
 
 .notion-collection-card-body {
+  margin-left: 8px;
   padding: 10px;
+  flex: 1;
+  justify-content: center;
 }
 
 /* only target safari */
@@ -136,17 +144,25 @@
   margin: 2em 0;
 }
 
-@media only screen and (max-width: 920px) {
+.notion-page {
+  padding-left: 6vw;
+  padding-right: 6vw;
+}
+
+@media only screen and (min-width: 920px) {
   .index-page.notion-page {
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
-@media only screen and (max-width: 720px) {
-  .notion-page {
-    padding-left: 2vw;
-    padding-right: 2vw;
+@media (min-width: 1300px) and (min-height: 300px) {
+  /*
+  calc((100vw + var(--notion-max-width)) / 2);
+  到底是个啥，没看出来。。
+  */
+  .notion-page-content-has-aside {
+    width: -webkit-fill-available;
   }
 }
 
@@ -189,20 +205,20 @@
 .notion-page-cover-wrapper,
 .notion-page-cover-wrapper span,
 .notion-page-cover-wrapper img {
-  max-width: 1200px !important;
-  border-radius: 24px;
+  border-radius: 0;
+}
+
+@media only screen and (min-width: 960px) {
+  .notion-page-cover-wrapper,
+  .notion-page-cover-wrapper span,
+  .notion-page-cover-wrapper img {
+    max-width: 960px !important;
+    border-radius: 4px;
+  }
 }
 
 .notion-page-cover-wrapper {
   box-shadow: 2px 2px 8px 4px rgba(15, 15, 15, 0.1);
-}
-
-@media only screen and (max-width: 1200px) {
-  .notion-page-cover-wrapper,
-  .notion-page-cover-wrapper span,
-  .notion-page-cover-wrapper img {
-    border-radius: 0;
-  }
 }
 
 .notion-block-ab9a258d6cf444f3bb40dc2600feae91 .notion-page-link {
